@@ -1,23 +1,25 @@
-const eventoFecha = new Date("December 15, 2025 00:00:00").getTime();
+document.addEventListener("DOMContentLoaded", function() {
+    function updateCountdown() {
+        const eventDate = new Date("2025-12-07T00:00:00").getTime();
+        const now = new Date().getTime();
+        const difference = eventDate - now;
 
-function actualizarContador() {
-    const ahora = new Date().getTime();
-    const diferencia = eventoFecha - ahora;
+        if (difference < 0) {
+            document.getElementById("countdown-timer").innerHTML = "<p>¡El gran día ha llegado! 🎉</p>";
+            return;
+        }
 
-    if (diferencia <= 0) {
-        document.getElementById("contador").innerHTML = "¡Es hoy!";
-        return;
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        document.getElementById("days").textContent = days.toString().padStart(2, '0');
+        document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+        document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+        document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
     }
 
-    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-    const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
-
-    document.getElementById("dias").innerText = dias;
-    document.getElementById("horas").innerText = horas;
-    document.getElementById("minutos").innerText = minutos;
-    document.getElementById("segundos").innerText = segundos;
-}
-
-setInterval(actualizarContador, 1000);
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+});
