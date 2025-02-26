@@ -3,55 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C & I - Save the Date</title>
+    <title>Save The Date - C&I</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
-    <header>
-        <h1 class="title">C & I</h1>
-    </header>
+    <div class="container">
+        <header>
+            <h2 class="save-the-date">SAVE THE DATE</h2>
+            <h1 class="title"><i>C & I</i></h1>
+            <h2 class="subtitle">Nos Casamos 💍</h2>
+        </header>
 
-    <section class="hero">
-        <img src="foto.jpg" alt="Pareja feliz">
-        <div class="text">
-            <h2>¡Nos casamos!</h2>
-            <p>Reserva la fecha y acompáñanos en este día tan especial.</p>
+        <div class="image-container">
+            <img src="foto.jpg" alt="Carolina e Iván" class="wedding-photo">
         </div>
-    </section>
 
-    <section class="countdown">
-        <h2>Faltan</h2>
-        <div id="contador"></div>
-    </section>
+        <section class="countdown">
+            <p class="countdown-text">Faltan:</p>
+            <div id="countdown-timer">
+                <div class="time-box">
+                    <span id="days">00</span>
+                    <p>Días</p>
+                </div>
+                <div class="time-box">
+                    <span id="hours">00</span>
+                    <p>Horas</p>
+                </div>
+                <div class="time-box">
+                    <span id="minutes">00</span>
+                    <p>Minutos</p>
+                </div>
+                <div class="time-box">
+                    <span id="seconds">00</span>
+                    <p>Segundos</p>
+                </div>
+            </div>
+        </section>
 
-    <section class="cta">
-        <button class="btn">Confirma tu asistencia</button>
-    </section>
+        <section class="invitation">
+            <p>Estamos muy emocionados de compartir este momento tan especial con ustedes.</p>
+            <p>📍 Reserva la fecha: <strong>1 de diciembre de 2024</strong></p>
+        </section>
+        
+        <footer>
+            <p>Con amor, <i>Carolina & Iván</i></p>
+        </footer>
+    </div>
 
-    <script>
-        // Contador regresivo
-        function countdown() {
-            const fechaBoda = new Date("2025-06-15T00:00:00").getTime();
-            setInterval(() => {
-                const ahora = new Date().getTime();
-                const diferencia = fechaBoda - ahora;
-                let dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-                let horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                let minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-                let segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
-                document.getElementById("contador").innerHTML = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
-            }, 1000);
-        }
-        countdown();
-
-        // Animaciones con GSAP
-        gsap.from(".hero img", { opacity: 0, y: 50, duration: 1.5 });
-        gsap.from(".text", { opacity: 0, x: -50, duration: 1.5 });
-        gsap.from(".countdown", { opacity: 0, scale: 0.8, duration: 1.5, scrollTrigger: ".countdown" });
-        gsap.from(".cta", { opacity: 0, y: 50, duration: 1.5, scrollTrigger: ".cta" });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
-
